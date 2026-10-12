@@ -143,7 +143,6 @@ function renderTerritoryPanel() {
             alt="${escapeHtml(`${territory.missionTitle} deployment map from ${territory.sourceBook}`)}"
             loading="lazy"
           >
-          <figcaption>${escapeHtml(territory.adaptationNote)}</figcaption>
         </figure>
       </section>
 

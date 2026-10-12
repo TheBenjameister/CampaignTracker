@@ -52,7 +52,11 @@ Serve the folder with any simple local web server, then open `index.html` throug
 - The visual design is in `styles.css`.
 - The background map is `assets/dominatus-war-map.png`.
 
-The cards use shortened, faction-agnostic campaign adaptations rather than reproducing complete published mission rules. Each card identifies and links its source, explains why it fits the territory, and uses a locally stored copy of that mission's deployment diagram. Sources: [Armageddon](https://wahapedia.ru/wh40k11ed/the-rules/armageddon/), [Dominatus](https://wahapedia.ru/wh40k11ed/the-rules/dominatus/), [Nachmund Gauntlet](https://wahapedia.ru/wh40k11ed/the-rules/nachmund-gauntlet/), and [Pariah Nexus](https://wahapedia.ru/wh40k11ed/the-rules/pariah-nexus/). Review the adaptations before organised play and confirm you have permission to republish the source diagrams if the site will be public.
+## Mission sources and adaptation note
+
+Deployment diagrams are reproduced from the linked sources with permission for use by this private-entertainment campaign site. Mission text is a shortened adaptation for this escalation campaign, not a full reproduction of the published missions. Each card identifies and links its source and explains why that mission fits the territory.
+
+Sources: [Armageddon](https://wahapedia.ru/wh40k11ed/the-rules/armageddon/), [Dominatus](https://wahapedia.ru/wh40k11ed/the-rules/dominatus/), [Nachmund Gauntlet](https://wahapedia.ru/wh40k11ed/the-rules/nachmund-gauntlet/), and [Pariah Nexus](https://wahapedia.ru/wh40k11ed/the-rules/pariah-nexus/).
 
 ## Background map
 

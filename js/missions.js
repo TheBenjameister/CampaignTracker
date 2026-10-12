@@ -661,8 +661,7 @@ export function missionForTerritory(index, territoryName, terrainLabel) {
     ...missionData,
     missionId,
     missionTitle: selected.title,
-    sourceFit: `${selected.fit} That is why it is used at ${territoryName}, a ${terrainLabel.toLowerCase()} territory.`,
-    adaptationNote: "Deployment diagram reproduced from the linked source. Mission text is a shortened adaptation for this escalation campaign, not a full reproduction of the published mission."
+    sourceFit: `${selected.fit} That is why it is used at ${territoryName}, a ${terrainLabel.toLowerCase()} territory.`
   };
 }
 
