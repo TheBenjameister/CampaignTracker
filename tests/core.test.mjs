@@ -64,7 +64,7 @@ test("every capturable territory has a sourced campaign mission and local deploy
 
   assert.equal(world.length, 55);
   assert.equal(battlefields.length, 52);
-  assert.equal(new Set(battlefields.map((territory) => territory.missionId)).size, 34);
+  assert.equal(new Set(battlefields.map((territory) => territory.missionId)).size, 35);
   assert.deepEqual(
     new Set(battlefields.map((territory) => territory.sourceBook)),
     new Set(["Armageddon", "Pariah Nexus", "Nachmund Gauntlet", "Dominatus"])

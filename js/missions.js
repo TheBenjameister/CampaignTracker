@@ -641,12 +641,12 @@ const MISSIONS_BY_ID = Object.fromEntries(MISSION_LIBRARY.map((entry) => [entry.
 // sourced mission appears at least once before the list begins to repeat.
 const MISSION_BY_TILE = [
   "arm-brazen-bridge",
-  "arm-mouth-hell", "ng-gauntlet",
+  "arm-mouth-hell", "arm-brazen-bridge",
   "arm-metamorphosis", "arm-temporal-flux", "pn-miasma",
   "arm-empyric-distortion", "arm-breakout", "pn-gheists-static", "arm-lighting-path",
   "arm-total-domination", "arm-fighting-gravity", "ng-front-line", "arm-trail-blood", "ng-supply-raid",
   "ng-all-out-war", "dom-outmanoeuvre", "arm-seal-rifts", "arm-veil-worlds", "pn-unstable-archeotech", "arm-temporal-raid",
-  "arm-mouth-hell", "ng-final-stand", "pn-final-acquisition", "arm-assault-gate", "pn-quantum-siege", "dom-gather-intel", "arm-lighting-path",
+  "ng-gauntlet", "ng-final-stand", "pn-final-acquisition", "arm-assault-gate", "pn-quantum-siege", "dom-gather-intel", "arm-lighting-path",
   "arm-offering-blood", "ng-strategic-strike", "dom-battlefield-dominance", "arm-blood-shadow", "pn-final-acquisition", "ng-saboteurs", "pn-dig-site", "ng-supply-raid",
   "arm-breakout", "dom-outmanoeuvre", "ng-front-line", "dom-sabotage", "pn-dig-site", "pn-gheists-static", "arm-temporal-raid", "pn-miasma", "ng-supply-raid",
   "ng-final-stand", "ng-strategic-strike", "dom-meatgrinder", "dom-battlefield-dominance", "pn-unstable-archeotech", "dom-secure-asset", "arm-trail-blood", "arm-lighting-path", "pn-miasma", "arm-brazen-bridge"
