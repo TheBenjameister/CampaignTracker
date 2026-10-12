@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#0b0f12">
+    <meta name="description" content="Interactive territory and requisition tracker for a three-phase tabletop escalation campaign.">
+    <title>The Dominatus Front</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+
+    <header class="site-header">
+      <a class="brand" href="index.html" aria-label="Campaign map home">
+        <span class="brand-mark" aria-hidden="true">⌬</span>
+        <span>
+          <strong id="campaign-title">The Dominatus Front</strong>
+          <small>Campaign intelligence</small>
+        </span>
+      </a>
+
+      <nav class="header-nav" aria-label="Primary navigation">
+        <a href="#war-map">War map</a>
+        <a href="#campaign-format">Campaign format</a>
+        <a class="button button-quiet" href="editor.html">Warmaster tools</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="command-banner shell" aria-labelledby="campaign-heading">
+        <div>
+          <p class="eyebrow">Strategic theatre // live record</p>
+          <h1 id="campaign-heading">A world divided.<br><em>One centre holds.</em></h1>
+          <p id="campaign-subtitle" class="lede">A three-phase escalation campaign</p>
+        </div>
+
+        <div class="campaign-status" aria-label="Current campaign status">
+          <div>
+            <span>Phase</span>
+            <strong id="phase-value">1</strong>
+          </div>
+          <div>
+            <span>Campaign week</span>
+            <strong id="week-value">1</strong>
+          </div>
+          <div>
+            <span>Battle size</span>
+            <strong><span id="points-value">500</span><small> pts</small></strong>
+          </div>
+          <p id="updated-value">Awaiting campaign data</p>
+        </div>
+      </section>
+
+      <section class="faction-strip shell" aria-label="Alliance standings" id="faction-cards"></section>
+
+      <section class="map-section shell" id="war-map" aria-labelledby="map-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">55 contested territories</p>
+            <h2 id="map-heading">The theatre of war</h2>
+          </div>
+          <p>Select any hex to inspect its battlefield, deployment, narrative mission and strategic value.</p>
+        </div>
+
+        <div class="map-layout">
+          <div class="map-column">
+            <div class="map-toolbar" aria-label="Map controls">
+              <div class="map-legend" id="map-legend"></div>
+              <div class="map-actions">
+                <button class="icon-button" id="ownership-toggle" type="button" aria-pressed="true">Ownership on</button>
+                <button class="icon-button" id="zoom-out" type="button" aria-label="Zoom map out">−</button>
+                <button class="icon-button" id="zoom-reset" type="button" aria-label="Reset map zoom">100%</button>
+                <button class="icon-button" id="zoom-in" type="button" aria-label="Zoom map in">+</button>
+              </div>
+            </div>
+
+            <div class="map-viewport" id="map-viewport">
+              <div class="map-canvas" id="map-canvas">
+                <div id="hex-map" class="hex-map-host" aria-live="polite"></div>
+              </div>
+            </div>
+
+            <div class="map-key" aria-label="Map symbols">
+              <span><b>HQ</b> Uncapturable headquarters</span>
+              <span><b>◆</b> Strategic location</span>
+              <span><b>LOCK</b> Phase 3 core</span>
+            </div>
+          </div>
+
+          <aside class="territory-panel" id="territory-panel" aria-live="polite">
+            <div class="panel-placeholder">
+              <span class="radar-mark" aria-hidden="true"></span>
+              <p class="eyebrow">Awaiting selection</p>
+              <h3>Choose a territory</h3>
+              <p>Every battlefield has its own environmental rules, deployment plan and narrative objective.</p>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="campaign-format shell" id="campaign-format" aria-labelledby="format-heading">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Escalation protocol</p>
+            <h2 id="format-heading">Fifteen battles to the centre</h2>
+          </div>
+          <p>Players arrange their own games. The tracker records only the campaign state and the territories those games decide.</p>
+        </div>
+
+        <div class="phase-grid">
+          <article class="phase-card is-current" data-phase-card="1">
+            <span class="phase-number">01</span>
+            <p class="eyebrow">First encounters</p>
+            <h3>Establish the front</h3>
+            <ol>
+              <li><strong>500 pts</strong><span>2 games</span></li>
+              <li><strong>750 pts</strong><span>2 games</span></li>
+              <li><strong>1,000 pts</strong><span>2 games</span></li>
+            </ol>
+          </article>
+
+          <article class="phase-card" data-phase-card="2">
+            <span class="phase-number">02</span>
+            <p class="eyebrow">Pitched battles</p>
+            <h3>Break the deadlock</h3>
+            <ol>
+              <li><strong>1,250 pts</strong><span>2 games</span></li>
+              <li><strong>1,500 pts</strong><span>2 games</span></li>
+              <li><strong>1,750 pts</strong><span>2 games</span></li>
+            </ol>
+          </article>
+
+          <article class="phase-card phase-final" data-phase-card="3">
+            <span class="phase-number">03</span>
+            <p class="eyebrow">Final mission</p>
+            <h3>Open the Dominatus core</h3>
+            <ol>
+              <li><strong>2,000 pts</strong><span>2 games</span></li>
+              <li><strong>Grand finale</strong><span>Onslaught</span></li>
+            </ol>
+            <p>The two leading alliances fight for the central hex. The third may intervene as a disruptor under terms agreed by the players.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="rules-band">
+        <div class="shell rules-grid">
+          <article>
+            <span class="rule-index">I</span>
+            <h3>Challenge</h3>
+            <p>Choose an adjacent territory. Occupied territory must be defended by a player from its controlling alliance; allied players cannot oppose one another.</p>
+          </article>
+          <article>
+            <span class="rule-index">II</span>
+            <h3>Battle</h3>
+            <p>Use that territory's mission card. The victor claims a neutral hex or takes an enemy hex; the defender retains it otherwise.</p>
+          </article>
+          <article>
+            <span class="rule-index">III</span>
+            <h3>Requisition</h3>
+            <p>Every controlled territory generates RP at the start of the week. The alliance shares its treasury and decides how it is spent.</p>
+          </article>
+          <article>
+            <span class="rule-index">IV</span>
+            <h3>Conquest</h3>
+            <p>The two alliances with the most territories enter the finale. Ties require Battle Honours, then the Warmaster's ruling.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer shell">
+      <span>The Dominatus Front</span>
+      <span>Static campaign record · GitHub Pages ready</span>
+    </footer>
+
+    <noscript>This campaign tracker requires JavaScript to render the map and calculate requisition points.</noscript>
+    <script type="module" src="js/app.js"></script>
+  </body>
+</html>

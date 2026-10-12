@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "campaign": {
+    "title": "The Dominatus Front",
+    "subtitle": "A three-phase escalation campaign",
+    "week": 1,
+    "phase": 1,
+    "pointsLimit": 500,
+    "lastUpdated": "2026-10-12"
+  },
+  "factions": {
+    "alpha": {
+      "name": "Alpha",
+      "color": "#58c7e8",
+      "rpSpent": 0
+    },
+    "beta": {
+      "name": "Beta",
+      "color": "#e36349",
+      "rpSpent": 0
+    },
+    "gamma": {
+      "name": "Gamma",
+      "color": "#d6b756",
+      "rpSpent": 0
+    }
+  },
+  "ownershipHistory": {
+    "T01": [
+      {
+        "week": 0,
+        "owner": "alpha"
+      }
+    ],
+    "T46": [
+      {
+        "week": 0,
+        "owner": "beta"
+      }
+    ],
+    "T55": [
+      {
+        "week": 0,
+        "owner": "gamma"
+      }
+    ]
+  }
+}
