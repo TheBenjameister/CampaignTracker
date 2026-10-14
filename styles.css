@@ -1021,6 +1021,182 @@ h1 em {
   background-image: linear-gradient(145deg, rgba(116, 71, 148, 0.08), transparent 58%);
 }
 
+.disposition-protocol {
+  padding-top: 92px;
+  scroll-margin-top: 92px;
+}
+
+.disposition-heading {
+  margin-bottom: 30px;
+}
+
+.agenda-sequence {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 0 30px;
+  padding: 0;
+  border: 1px solid var(--line);
+  background: rgba(8, 12, 14, 0.65);
+  list-style: none;
+}
+
+.agenda-sequence li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 14px;
+  padding: 22px 24px;
+  border-right: 1px solid var(--line);
+}
+
+.agenda-sequence li:last-child {
+  border-right: 0;
+}
+
+.agenda-sequence span {
+  grid-row: 1 / span 2;
+  color: var(--accent);
+  font-family: var(--serif);
+  font-size: 18px;
+}
+
+.agenda-sequence strong {
+  font-family: var(--serif);
+  font-size: 17px;
+}
+
+.agenda-sequence small {
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.disposition-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px;
+}
+
+.disposition-card {
+  position: relative;
+  grid-column: span 2;
+  min-height: 315px;
+  overflow: hidden;
+  padding: 26px;
+  border: 1px solid var(--line);
+  background: linear-gradient(150deg, rgba(216, 167, 66, 0.075), rgba(17, 23, 26, 0.88) 52%);
+}
+
+.disposition-card:nth-child(4) {
+  grid-column: 2 / span 2;
+}
+
+.disposition-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -58px -72px auto;
+  width: 150px;
+  height: 150px;
+  border: 1px solid rgba(216, 167, 66, 0.14);
+  border-radius: 50%;
+  box-shadow: 0 0 0 20px rgba(216, 167, 66, 0.02), 0 0 0 42px rgba(216, 167, 66, 0.015);
+  pointer-events: none;
+}
+
+.disposition-card-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.disposition-card-heading span {
+  color: var(--accent);
+  font-family: var(--serif);
+  font-size: 13px;
+}
+
+.disposition-card h3 {
+  margin: 0;
+  font-size: 23px;
+}
+
+.disposition-purpose {
+  min-height: 38px;
+  margin: 15px 0 18px;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.disposition-card h4 {
+  margin: 0 0 9px;
+  color: var(--accent-pale);
+  font-size: 11px;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.disposition-card h4 + p,
+.disposition-card .exemplary {
+  position: relative;
+  z-index: 1;
+  color: #c1c9cc;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.disposition-card .exemplary {
+  margin-bottom: 0;
+  color: var(--muted);
+}
+
+.disposition-card .exemplary strong {
+  color: #d8c48d;
+}
+
+.agenda-rulings {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin-top: 30px;
+  border: 1px solid var(--line);
+  background: rgba(17, 23, 26, 0.58);
+}
+
+.agenda-rulings article {
+  padding: 24px;
+  border-right: 1px solid var(--line);
+}
+
+.agenda-rulings article:last-child {
+  border-right: 0;
+}
+
+.agenda-rulings span {
+  color: var(--accent);
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.agenda-rulings p {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.disposition-note {
+  margin: 18px 0 0;
+  color: var(--dim);
+  font-size: 10px;
+}
+
+.disposition-note a {
+  color: var(--accent-pale);
+}
+
 .rules-band {
   border-block: 1px solid var(--line);
   background: #0d1215;
@@ -1433,8 +1609,31 @@ select:hover {
   }
 
   .faction-strip,
-  .phase-grid {
+  .phase-grid,
+  .agenda-sequence,
+  .agenda-rulings {
     grid-template-columns: 1fr;
+  }
+
+  .agenda-sequence li,
+  .agenda-rulings article {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .agenda-sequence li:last-child,
+  .agenda-rulings article:last-child {
+    border-bottom: 0;
+  }
+
+  .disposition-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .disposition-card,
+  .disposition-card:nth-child(4) {
+    grid-column: auto;
+    min-height: auto;
   }
 
   .faction-card,

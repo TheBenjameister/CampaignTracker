@@ -23,6 +23,7 @@
       <nav class="header-nav" aria-label="Primary navigation">
         <a href="#war-map">War map</a>
         <a href="#campaign-format">Campaign format</a>
+        <a href="#dispositions">Dispositions</a>
         <a class="button button-quiet" href="editor.html">Warmaster tools</a>
       </nav>
     </header>
@@ -143,6 +144,81 @@
             </ol>
             <p>The two leading alliances fight for the central hex. The third may intervene as a disruptor under terms agreed by the players.</p>
           </article>
+        </div>
+
+        <div class="disposition-protocol" id="dispositions">
+          <div class="section-heading disposition-heading">
+            <div>
+              <p class="eyebrow">Dominatus-compatible side objectives</p>
+              <h2>Disposition Agendas</h2>
+            </div>
+            <p>The territory mission decides victory and capture. Dispositions add a private objective for each player without changing its Victory Points.</p>
+          </div>
+
+          <ol class="agenda-sequence" aria-label="Disposition Agenda sequence">
+            <li><span>01</span><strong>Choose secretly</strong><small>After reading the territory card, each player selects a disposition permitted by their army. If none are prescribed, choose any of the five.</small></li>
+            <li><span>02</span><strong>Reveal together</strong><small>Reveal both choices before determining deployment. Each player uses the matching Agenda below.</small></li>
+            <li><span>03</span><strong>Resolve separately</strong><small>The shared territory mission determines the battle. Each player can earn at most one Agenda Achieved from that battle.</small></li>
+          </ol>
+
+          <div class="disposition-grid">
+            <article class="disposition-card disposition-hold">
+              <div class="disposition-card-heading"><span>I</span><h3>Take and Hold</h3></div>
+              <p class="disposition-purpose">Seize ground and refuse to yield it.</p>
+              <h4>Agenda — Claim the Field</h4>
+              <p>At the end of the battle, control at least one objective in your deployment zone and at least one objective outside it.</p>
+              <p class="exemplary"><strong>Exemplary:</strong> the outside objective is in the enemy deployment zone.</p>
+            </article>
+
+            <article class="disposition-card disposition-purge">
+              <div class="disposition-card-heading"><span>II</span><h3>Purge the Foe</h3></div>
+              <p class="disposition-purpose">Break the enemy's strength in open battle.</p>
+              <h4>Agenda — Decisive Attrition</h4>
+              <p>Destroy enemy units whose combined starting points value is at least half of the opponent's army total.</p>
+              <p class="exemplary"><strong>Exemplary:</strong> the enemy Warlord is destroyed and your Warlord survives.</p>
+            </article>
+
+            <article class="disposition-card disposition-disrupt">
+              <div class="disposition-card-heading"><span>III</span><h3>Disruption</h3></div>
+              <p class="disposition-purpose">Sabotage the enemy's plans and positions.</p>
+              <h4>Agenda — Plant the Charges</h4>
+              <p>Complete a Disrupt action on an objective in No Man's Land or the enemy deployment zone. Start at the end of your Movement phase with an eligible unit; complete it at the end of your turn if that unit remains in range and is not Battle-shocked.</p>
+              <p class="exemplary"><strong>Exemplary:</strong> complete it on two different objectives, or once in the enemy deployment zone.</p>
+            </article>
+
+            <article class="disposition-card disposition-recon">
+              <div class="disposition-card-heading"><span>IV</span><h3>Reconnaissance</h3></div>
+              <p class="disposition-purpose">Map the war zone and pierce the enemy screen.</p>
+              <h4>Agenda — Eyes Forward</h4>
+              <p>At the end of the battle, have one or more non-Battle-shocked units wholly within three different battlefield quarters.</p>
+              <p class="exemplary"><strong>Exemplary:</strong> have qualifying units in all four battlefield quarters.</p>
+            </article>
+
+            <article class="disposition-card disposition-assets">
+              <div class="disposition-card-heading"><span>V</span><h3>Priority Assets</h3></div>
+              <p class="disposition-purpose">Secure the resource that matters most.</p>
+              <h4>Agenda — Vital Ground</h4>
+              <p>After deployment, secretly mark one objective outside your deployment zone. Control that objective at the end of two different battle rounds.</p>
+              <p class="exemplary"><strong>Exemplary:</strong> control it at the end of the battle with a Character or Battleline unit.</p>
+            </article>
+          </div>
+
+          <div class="agenda-rulings">
+            <article>
+              <span>Record</span>
+              <p>An achieved Agenda counts once, whether or not its Exemplary condition was met. A player can record no more than three Agenda Achieved results in each campaign phase.</p>
+            </article>
+            <article>
+              <span>Reward</span>
+              <p>Use the normal Dominatus result: the winner gains a Battle Honour and the loser gains a Battle Skill. On a draw, a player who achieved their Agenda draws two of the appropriate card and keeps one.</p>
+            </article>
+            <article>
+              <span>Ascendancy</span>
+              <p>At phase end, compare each alliance's average Agenda Achieved per participating player. Break a tie by Exemplary results, then by the Warmaster's ruling.</p>
+            </article>
+          </div>
+
+          <p class="disposition-note">This is a faction-agnostic campaign adaptation of the <a href="https://wahapedia.ru/wh40k11ed/the-rules/dominatus/" target="_blank" rel="noreferrer">Dominatus disposition and Agenda structure</a>. Agenda records are kept outside this map tracker and never award RP or decide territory control.</p>
         </div>
       </section>
 

@@ -38,6 +38,23 @@ async function checkMap(page, expectedWidth) {
   assert.equal(await page.locator(".source-block a").count(), 2, "cannon card should link its mission source and Horus Heresy inspiration");
 }
 
+async function checkDispositions(page, useNavigation = false) {
+  if (useNavigation) {
+    await page.locator('a[href="#dispositions"]').click();
+    await page.waitForTimeout(120);
+    const bounds = await page.evaluate(() => ({
+      headerBottom: document.querySelector(".site-header").getBoundingClientRect().bottom,
+      headingTop: document.querySelector("#dispositions h2").getBoundingClientRect().top
+    }));
+    assert.ok(bounds.headingTop >= bounds.headerBottom, "the disposition heading should clear the sticky header");
+  } else {
+    await page.locator("#dispositions").scrollIntoViewIfNeeded();
+  }
+  assert.equal(await page.locator(".disposition-card").count(), 5, "all five dispositions should render");
+  assert.equal(await page.locator(".agenda-sequence li").count(), 3, "the choose, reveal and resolve sequence should render");
+  assert.match(await page.locator("#dispositions").textContent(), /territory mission determines the battle/i);
+}
+
 async function verify() {
   const browser = await chromium.launch({ executablePath: EDGE_PATH, headless: true });
 
@@ -47,15 +64,19 @@ async function verify() {
     await desktop.locator(".territory-hex").first().waitFor({ state: "visible" });
     const desktopCanvasWidth = await desktop.locator("#map-viewport").evaluate((node) => node.clientWidth);
     await checkMap(desktop, desktopCanvasWidth);
+    await checkDispositions(desktop, true);
 
     const screenshot = path.join(os.tmpdir(), "dominatus-map-desktop.png");
     await desktop.locator("#war-map").screenshot({ path: screenshot });
+    const dispositionsScreenshot = path.join(os.tmpdir(), "dominatus-dispositions-desktop.png");
+    await desktop.locator("#dispositions").screenshot({ path: dispositionsScreenshot });
 
     const narrow = await browser.newPage({ viewport: { width: 360, height: 800 } });
     await narrow.goto(SITE_URL, { waitUntil: "networkidle" });
     await narrow.locator(".territory-hex").first().waitFor({ state: "visible" });
     const narrowCanvasWidth = await narrow.locator("#map-viewport").evaluate((node) => node.clientWidth);
     await checkMap(narrow, narrowCanvasWidth);
+    await checkDispositions(narrow);
 
     const dimensions = await narrow.evaluate(() => ({
       viewport: document.documentElement.clientWidth,
@@ -63,7 +84,7 @@ async function verify() {
     }));
     assert.ok(dimensions.document <= dimensions.viewport, "the page should not overflow horizontally");
 
-    console.log(JSON.stringify({ territories: 55, desktopCanvasWidth, narrowCanvasWidth, screenshot }));
+    console.log(JSON.stringify({ territories: 55, desktopCanvasWidth, narrowCanvasWidth, screenshot, dispositionsScreenshot }));
   } finally {
     await browser.close();
   }

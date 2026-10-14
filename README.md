@@ -13,6 +13,7 @@ A buildless, static campaign tracker for a three-phase tabletop escalation campa
 - Automatic weekly RP calculations based on territory-control history.
 - A Warmaster editor that records ownership changes and exports an updated `campaign.json` file.
 - Responsive layouts for desktop, tablet, and mobile.
+- Five faction-agnostic Disposition Agendas that preserve the secret-choice, personal-objective and Agenda-achievement rhythm of Dominatus without overriding territory missions.
 
 ## Updating the campaign
 
@@ -66,6 +67,16 @@ The six inner city territories and the Dominatus Engine are protected by three a
 - A controlled wall territory grants one Fortification asset in the grand finale.
 - Each controlled Annihilator Cannon fires once per battle round using a 5-inch blast marker. A finalist fires at the end of one of its alliance turns; a cannon controlled by the third-alliance disruptor fires at the end of the battle round.
 - Units touched by the marker suffer 1 mortal wound, or D3 mortal wounds if beneath its centre hole. Friendly fire applies.
+
+## Disposition Agendas
+
+The website includes a campaign adaptation of the five Force Dispositions: Take and Hold, Purge the Foe, Disruption, Reconnaissance and Priority Assets. Players secretly select an allowed disposition, reveal together, and attempt its personal Agenda alongside the territory mission.
+
+- The territory mission remains the shared Primary Mission and alone decides battle victory and territory control.
+- A player can record at most one Agenda Achieved per battle and three per campaign phase.
+- Exemplary conditions are phase tie-breakers only; they do not grant a second Agenda, Victory Points, RP, or territory control.
+- At phase end, alliance Agenda standing is the average achieved per participating player, preventing a larger alliance from winning through headcount alone. Exemplary results break a tie, followed by the Warmaster's ruling.
+- Agenda achievements are administered outside the website, keeping the public tracker limited to map state, campaign phase, points limit, week, and RP.
 
 ## Background map
 

@@ -7,6 +7,7 @@ import {
   ownerAtWeek
 } from "../js/core.js";
 import { access } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { buildWorld } from "../js/world.js";
 
@@ -140,4 +141,22 @@ test("the central territory uses the three-alliance finale", () => {
   assert.equal(centre.missionId, "arm-assault-gate");
   assert.match(centre.briefing, /third alliance/i);
   assert.match(centre.victorBonus, /wins the campaign/i);
+});
+
+test("the campaign page includes all five disposition agendas", async () => {
+  const html = await readFile(fileURLToPath(new URL("../index.html", import.meta.url)), "utf8");
+
+  for (const disposition of [
+    "Take and Hold",
+    "Purge the Foe",
+    "Disruption",
+    "Reconnaissance",
+    "Priority Assets"
+  ]) {
+    assert.match(html, new RegExp(`>${disposition}<`));
+  }
+
+  assert.match(html, /territory mission decides victory and capture/i);
+  assert.match(html, /no more than three Agenda Achieved results/i);
+  assert.match(html, /never award RP or decide territory control/i);
 });
