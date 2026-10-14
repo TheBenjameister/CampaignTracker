@@ -260,7 +260,7 @@ const CORE_IDS = new Set(["T18", "T19", "T24", "T25", "T26", "T32", "T33"]);
 const WALL_IDS = new Set(["T12", "T14", "T17", "T20", "T23", "T27", "T40", "T41", "T42"]);
 const CANNON_IDS = new Set(["T13", "T31", "T34"]);
 const DEFENCE_RING_IDS = new Set([...WALL_IDS, ...CANNON_IDS]);
-const STRATEGIC_IDS = ["T07", "T10", "T12", "T14", "T16", "T21", "T29", "T36", "T39", "T43", "T49", "T52"];
+const STRATEGIC_IDS = ["T05", "T07", "T10", "T22", "T38", "T44", "T28", "T52", "T49"];
 
 const DEFENCE_RING_NAMES = {
   T12: "Northwestern Curtain",

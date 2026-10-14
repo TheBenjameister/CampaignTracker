@@ -104,6 +104,25 @@ test("the central defence ring contains nine walls and three cannon emplacements
   }
 });
 
+test("only the nine illustrated special locations are strategic", () => {
+  const world = buildWorld();
+  const strategicTerritories = world.filter((territory) => territory.strategic);
+  const strategicIds = strategicTerritories
+    .map((territory) => territory.id);
+
+  assert.deepEqual(strategicIds, ["T05", "T07", "T10", "T22", "T28", "T38", "T44", "T49", "T52"]);
+
+  for (const territory of strategicTerritories) {
+    assert.equal(territory.draftCost, 2);
+    assert.equal(territory.rpValue, 2);
+    assert.ok(territory.strategicBonus);
+  }
+
+  for (const territory of world.filter((territory) => !territory.strategic)) {
+    assert.equal(territory.strategicBonus, null);
+  }
+});
+
 test("headquarters cannot be assaulted and have no mission data", () => {
   const headquarters = buildWorld().filter((territory) => territory.headquartersFor);
 
