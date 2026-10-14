@@ -64,7 +64,7 @@ test("every capturable territory has a sourced campaign mission and local deploy
 
   assert.equal(world.length, 55);
   assert.equal(battlefields.length, 52);
-  assert.equal(new Set(battlefields.map((territory) => territory.missionId)).size, 35);
+  assert.equal(new Set(battlefields.map((territory) => territory.missionId)).size, 42);
   assert.deepEqual(
     new Set(battlefields.map((territory) => territory.sourceBook)),
     new Set(["Armageddon", "Pariah Nexus", "Nachmund Gauntlet", "Dominatus"])
@@ -76,6 +76,32 @@ test("every capturable territory has a sourced campaign mission and local deploy
     assert.ok(territory.sourceFit.includes(territory.name));
     return access(fileURLToPath(new URL(`../${territory.deploymentImage}`, import.meta.url)));
   }));
+});
+
+test("the central defence ring contains nine walls and three cannon emplacements", () => {
+  const world = buildWorld();
+  const walls = world.filter((territory) => territory.defenceRole === "Curtain wall");
+  const cannons = world.filter((territory) => territory.defenceRole === "Annihilator Cannon");
+
+  assert.deepEqual(
+    walls.map((territory) => territory.id),
+    ["T12", "T14", "T17", "T20", "T23", "T27", "T40", "T41", "T42"]
+  );
+  assert.deepEqual(cannons.map((territory) => territory.id), ["T13", "T31", "T34"]);
+
+  for (const territory of [...walls, ...cannons]) {
+    assert.equal(territory.terrainId, "fortress");
+    assert.match(territory.missionId, /^ring-/);
+  }
+
+  for (const territory of walls) {
+    assert.match(territory.victorBonus, /Fortification asset/i);
+  }
+
+  for (const territory of cannons) {
+    assert.match(territory.victorBonus, /5-inch blast marker/i);
+    assert.match(territory.victorBonus, /non-finalist disruptor/i);
+  }
 });
 
 test("headquarters cannot be assaulted and have no mission data", () => {

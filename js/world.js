@@ -257,7 +257,25 @@ const TERRAIN = {
 };
 
 const CORE_IDS = new Set(["T18", "T19", "T24", "T25", "T26", "T32", "T33"]);
+const WALL_IDS = new Set(["T12", "T14", "T17", "T20", "T23", "T27", "T40", "T41", "T42"]);
+const CANNON_IDS = new Set(["T13", "T31", "T34"]);
+const DEFENCE_RING_IDS = new Set([...WALL_IDS, ...CANNON_IDS]);
 const STRATEGIC_IDS = ["T07", "T10", "T12", "T14", "T16", "T21", "T29", "T36", "T39", "T43", "T49", "T52"];
+
+const DEFENCE_RING_NAMES = {
+  T12: "Northwestern Curtain",
+  T13: "Crownfire Battery",
+  T14: "Northeastern Curtain",
+  T17: "Pilgrim Wall",
+  T20: "Furnace Wall",
+  T23: "Western Bulwark",
+  T27: "Eastern Bulwark",
+  T31: "Grief Battery",
+  T34: "Wrath Battery",
+  T40: "Southwestern Curtain",
+  T41: "Southern Gatehouse",
+  T42: "Southeastern Curtain"
+};
 
 const STRATEGIC_BONUSES = [
   ["Veteran Redoubt", "When a player in the controlling alliance draws Battle Skill cards, draw one additional card before choosing one to keep."],
@@ -302,6 +320,7 @@ function territoryId(index) {
 
 function terrainFor(id, index) {
   if (CORE_IDS.has(id)) return "core";
+  if (DEFENCE_RING_IDS.has(id)) return "fortress";
   if (HQ[id]) return "fortress";
   return TERRAIN_BY_TILE[index];
 }
@@ -315,6 +334,7 @@ export function buildWorld() {
       const id = territoryId(index);
       const terrainId = terrainFor(id, index);
       const terrain = TERRAIN[terrainId];
+      const name = DEFENCE_RING_NAMES[id] ?? TILE_NAMES[index];
       const strategicIndex = STRATEGIC_IDS.indexOf(id);
       const isCore = CORE_IDS.has(id);
       const isCentre = id === "T25";
@@ -327,7 +347,7 @@ export function buildWorld() {
       // challenged or assaulted.
       const assignedMission = headquartersFor
         ? null
-        : missionForTerritory(index, TILE_NAMES[index], terrain.label);
+        : missionForTerritory(index, name, terrain.label);
 
       territories.push({
         id,
@@ -336,13 +356,14 @@ export function buildWorld() {
         col,
         q: col,
         r: row - col,
-        name: TILE_NAMES[index],
+        name,
         terrainId,
         ...terrain,
         ...(assignedMission ?? {}),
         inspiration: assignedMission?.sourceBook ?? "Alliance stronghold",
         strategic: Boolean(strategicBonus),
         strategicBonus,
+        defenceRole: CANNON_IDS.has(id) ? "Annihilator Cannon" : WALL_IDS.has(id) ? "Curtain wall" : null,
         headquartersFor,
         capturable: !headquartersFor,
         lockedUntilPhase: isCore ? 3 : 1,
@@ -361,6 +382,9 @@ export function buildWorld() {
 export const WORLD_META = {
   territoryCount: 55,
   coreIds: [...CORE_IDS],
+  wallIds: [...WALL_IDS],
+  cannonIds: [...CANNON_IDS],
+  defenceRingIds: [...DEFENCE_RING_IDS],
   strategicIds: [...STRATEGIC_IDS],
   headquarters: { ...HQ }
 };

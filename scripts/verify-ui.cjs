@@ -30,6 +30,12 @@ async function checkMap(page, expectedWidth) {
   assert.match(await page.locator(".deployment-map-image").getAttribute("src"), /^assets\/deployments\/.+\.png$/);
   assert.equal(await page.locator(".victor-block").count(), 1, "territory card should include a victor bonus");
   assert.equal(await page.locator(".source-block a").count(), 1, "territory card should link to its source rules");
+
+  await page.getByRole("button", { name: /Crownfire Battery/ }).click();
+  assert.equal(await page.locator("#territory-panel h3").textContent(), "Crownfire Battery");
+  assert.match(await page.locator("#territory-panel").textContent(), /Annihilator Cannon/);
+  assert.match(await page.locator(".victor-block").textContent(), /5-inch blast marker/);
+  assert.equal(await page.locator(".source-block a").count(), 2, "cannon card should link its mission source and Horus Heresy inspiration");
 }
 
 async function verify() {

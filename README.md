@@ -7,6 +7,7 @@ A buildless, static campaign tracker for a three-phase tabletop escalation campa
 - A 10-row, 55-territory triangular hex map.
 - Three uncapturable corner headquarters for Alpha, Beta, and Gamma.
 - A seven-hex central region locked until Phase 3.
+- A twelve-territory defence ring made up of nine wall sectors and three Annihilator Cannon emplacements, each with a bespoke siege mission and grand-finale benefit.
 - Clickable non-HQ location cards with sourced deployment maps, adapted objectives, war-zone rules, victor bonuses, RP yield, and strategic bonuses.
 - Mission-free headquarters cards that clearly identify those three territories as permanent, non-assaultable strongholds.
 - Automatic weekly RP calculations based on territory-control history.
@@ -48,7 +49,7 @@ Serve the folder with any simple local web server, then open `index.html` throug
 
 - Mutable campaign state is stored in `data/campaign.json`.
 - Territory names, bonuses, and map rules are defined in `js/world.js`.
-- The 35-mission library and its 55-tile assignment are defined in `js/missions.js`.
+- The 47-entry mission library and its 55-tile assignment (42 distinct missions in use) are defined in `js/missions.js`.
 - The visual design is in `styles.css`.
 - The background map is `assets/dominatus-war-map.png`.
 
@@ -56,7 +57,15 @@ Serve the folder with any simple local web server, then open `index.html` throug
 
 Deployment diagrams are reproduced from the linked sources with permission for use by this private-entertainment campaign site. Mission text is a shortened adaptation for this escalation campaign, not a full reproduction of the published missions. Each card identifies and links its source and explains why that mission fits the territory.
 
-Sources: [Armageddon](https://wahapedia.ru/wh40k11ed/the-rules/armageddon/), [Dominatus](https://wahapedia.ru/wh40k11ed/the-rules/dominatus/), [Nachmund Gauntlet](https://wahapedia.ru/wh40k11ed/the-rules/nachmund-gauntlet/), and [Pariah Nexus](https://wahapedia.ru/wh40k11ed/the-rules/pariah-nexus/).
+Sources: [Armageddon](https://wahapedia.ru/wh40k11ed/the-rules/armageddon/), [Dominatus](https://wahapedia.ru/wh40k11ed/the-rules/dominatus/), [Nachmund Gauntlet](https://wahapedia.ru/wh40k11ed/the-rules/nachmund-gauntlet/), [Pariah Nexus](https://wahapedia.ru/wh40k11ed/the-rules/pariah-nexus/), [The Breaking of the Perfect Fortress](https://assets.warhammer-community.com/horusheresy_exemplarybattles_thebreakingoftheperfectfortress_eng_24.09-5ds3vom7i0.pdf), and [Legacies of the Age of Darkness: Orbital Defences](https://assets.warhammer-community.com/dave-s-downloads-25-09/horusheresy_legaciesoftheageofdarkness_legionesastartes_eng_24.09.23.pdf).
+
+## Central defence ring
+
+The six inner city territories and the Dominatus Engine are protected by three arcs of three wall territories. Crownfire Battery, Grief Battery and Wrath Battery sit between those arcs.
+
+- A controlled wall territory grants one Fortification asset in the grand finale.
+- Each controlled Annihilator Cannon fires once per battle round using a 5-inch blast marker. A finalist fires at the end of one of its alliance turns; a cannon controlled by the third-alliance disruptor fires at the end of the battle round.
+- Units touched by the marker suffer 1 mortal wound, or D3 mortal wounds if beneath its centre hole. Friendly fire applies.
 
 ## Background map
 

@@ -125,6 +125,19 @@ function renderTerritoryPanel() {
         <p>The two leading alliances contest this territory in the grand finale. The third alliance may intervene as a disruptor under terms agreed by the players.</p>
       </section>`
     : "";
+  const defenceRingBlock = territory.defenceRole
+    ? `
+      <section class="card-block bonus-block">
+        <h4>Central defence ring</h4>
+        <h5>${escapeHtml(territory.defenceRole)}</h5>
+        <p>${territory.defenceRole === "Annihilator Cannon"
+          ? "One of three heavy emplacements guarding the six Phase 3 inner territories. Its controlling alliance gains the bombardment described under Victor bonus during the grand finale."
+          : "One of nine fortified wall territories arranged as three arcs of three. Holding it opens a route toward the Phase 3 inner territories and grants the fortification described under Victor bonus during the grand finale."}</p>
+      </section>`
+    : "";
+  const additionalSourceLinks = (territory.additionalSources ?? [])
+    .map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noreferrer">Open the ${escapeHtml(source.book)} inspiration ↗</a>`)
+    .join("");
   const battleBlocks = territory.headquartersFor
     ? `
       <section class="card-block headquarters-safe-block">
@@ -169,9 +182,10 @@ function renderTerritoryPanel() {
 
       <section class="card-block source-block">
         <h4>Mission source</h4>
-        <h5>${escapeHtml(territory.sourceBook)} — ${escapeHtml(territory.missionTitle)}</h5>
+        <h5>${escapeHtml(territory.sourceBook)} — ${escapeHtml(territory.sourceMission ?? territory.missionTitle)}</h5>
         <p>${escapeHtml(territory.sourceFit)}</p>
         <a href="${escapeHtml(territory.sourceUrl)}" target="_blank" rel="noreferrer">Open the ${escapeHtml(territory.sourceBook)} source rules ↗</a>
+        ${additionalSourceLinks}
       </section>`;
 
   $("#territory-panel").innerHTML = `
@@ -186,6 +200,7 @@ function renderTerritoryPanel() {
           <span class="tag tag-owner">${escapeHtml(controller.name)}</span>
           <span class="tag">${escapeHtml(territory.label)}</span>
           ${territory.strategic ? '<span class="tag">Strategic</span>' : ""}
+          ${territory.defenceRole ? `<span class="tag">${escapeHtml(territory.defenceRole)}</span>` : ""}
           ${territory.headquartersFor ? '<span class="tag">Headquarters</span>' : ""}
           ${locked ? '<span class="tag">Locked until Phase 3</span>' : ""}
         </div>
@@ -204,6 +219,7 @@ function renderTerritoryPanel() {
           ${locked ? '<p class="locked-message">The Dominatus core cannot be entered before Phase 3.</p>' : ""}
         </section>
 
+        ${defenceRingBlock}
         ${strategicBlock}
         ${headquartersBlock}
         ${centreBlock}

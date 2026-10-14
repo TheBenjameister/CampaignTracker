@@ -14,15 +14,39 @@ const SOURCES = {
   dominatus: {
     book: "Dominatus",
     url: "https://wahapedia.ru/wh40k11ed/the-rules/dominatus/"
+  },
+  heresyFortress: {
+    book: "Horus Heresy: The Breaking of the Perfect Fortress",
+    url: "https://assets.warhammer-community.com/horusheresy_exemplarybattles_thebreakingoftheperfectfortress_eng_24.09-5ds3vom7i0.pdf"
+  },
+  heresyDefences: {
+    book: "Horus Heresy: Legacies — Orbital Defences",
+    url: "https://assets.warhammer-community.com/dave-s-downloads-25-09/horusheresy_legaciesoftheageofdarkness_legionesastartes_eng_24.09.23.pdf"
   }
 };
 
-function mission({ id, title, source, image, deployment, briefing, objectives, warzoneTitle, warzone, victorBonus, fit }) {
+function mission({
+  id,
+  title,
+  source,
+  sourceMission = title,
+  additionalSources = [],
+  image,
+  deployment,
+  briefing,
+  objectives,
+  warzoneTitle,
+  warzone,
+  victorBonus,
+  fit
+}) {
   return {
     id,
     title,
     sourceBook: SOURCES[source].book,
     sourceUrl: SOURCES[source].url,
+    sourceMission,
+    additionalSources: additionalSources.map((sourceKey) => SOURCES[sourceKey]),
     deploymentImage: `assets/deployments/${image}`,
     deployment,
     briefing,
@@ -33,6 +57,10 @@ function mission({ id, title, source, image, deployment, briefing, objectives, w
     fit
   };
 }
+
+const WALL_FINALE_BONUS = "While the victor's alliance controls this wall tile, it gains one Fortification asset in the grand finale. After deployment, nominate one non-Titanic unit wholly within that alliance's deployment zone. Until that unit first makes a Normal, Advance or Fall Back move, it has the Benefit of Cover and Stealth. A unit can receive only one Fortification asset.";
+
+const ANNIHILATOR_FINALE_BONUS = "While the victor's alliance controls this tile, it controls one Annihilator Cannon in the grand finale. Each cannon fires once per battle round. A finalist fires it at the end of one of its alliance's turns; if the cannon belongs to the non-finalist disruptor, it fires at the end of the battle round instead. Place a 5-inch blast marker anywhere on the battlefield. Every unit, friend or foe, with a model beneath it suffers 1 mortal wound; a unit beneath the centre hole suffers D3 mortal wounds instead. A unit can be affected only once by each cannon's shot.";
 
 export const MISSION_LIBRARY = [
   mission({
@@ -632,6 +660,229 @@ export const MISSION_LIBRARY = [
     warzone: "The first time each unit enters a crater, roll one D6. On a 1 it suffers D3 mortal wounds; on a 6 its Objective Control improves by 1 until round end.",
     victorBonus: "The winner gains 2 RP and may reduce one Character Enhancement purchase by 5 RP, minimum 5 RP.",
     fit: "Its portable asset makes crater fields and salvage grounds tactically meaningful."
+  }),
+
+  // The twelve territories in the outer defence ring use bespoke siege
+  // missions. Their layouts are adapted from the named published mission,
+  // while the scoring and finale rewards are purpose-built for this campaign.
+  mission({
+    id: "ring-run-curtain",
+    title: "Run the Curtain",
+    source: "nachmund",
+    sourceMission: "The Gauntlet",
+    image: "TheGauntlet.png",
+    deployment: "Western killing corridor",
+    briefing: "The attacker must drive along the exposed western curtain and seize its gatehouse while the garrison fires from successive wall positions.",
+    objectives: [
+      "Mark three wall zones from the attacker's edge to the gatehouse. The attacker scores 5VP the first time each round a unit ends a move wholly within the next uncaptured zone.",
+      "The defender scores 5VP at the end of its Command phase if it controls at least two wall-zone objectives.",
+      "At battle's end, the attacker scores 15VP for controlling the gatehouse; otherwise the defender scores 15VP."
+    ],
+    warzoneTitle: "Enfilading Fire",
+    warzone: "Units in the central approach cannot receive the Benefit of Cover unless wholly within terrain. Defender units on a wall objective gain Ignores Cover against targets in that approach.",
+    victorBonus: WALL_FINALE_BONUS,
+    fit: "Adapted from The Gauntlet: its layered run through overlapping fire is ideal for the northwestern end of the western curtain."
+  }),
+  mission({
+    id: "ring-break-cordon",
+    title: "Break the Cordon",
+    source: "armageddon",
+    sourceMission: "Breakout",
+    image: "Breakout.png",
+    deployment: "Besieged wall sector",
+    briefing: "The garrison launches a violent sortie from the western wall to break the siege lines before the attackers seal the sector completely.",
+    objectives: [
+      "The defender scores 5VP for each unit that exits from the attacker's battlefield edge, to a maximum of 25VP.",
+      "The attacker scores 5VP for each destroyed defender unit and 5VP at the end of each Command phase it controls the cordon objective, to a combined maximum of 30VP.",
+      "At battle's end, the defender scores 10VP if its Warlord escaped; otherwise the attacker scores 10VP."
+    ],
+    warzoneTitle: "Closing Siege Lines",
+    warzone: "From battle round three onward, Strategic Reserves cannot arrive within 12 inches of the defender's escape edge. Defender units can move through friendly Infantry while wholly within the wall sector.",
+    victorBonus: WALL_FINALE_BONUS,
+    fit: "Adapted from Breakout: the mission turns the middle western wall into a desperate sally point instead of another static objective fight."
+  }),
+  mission({
+    id: "ring-western-depths",
+    title: "Into the Western Breach",
+    source: "armageddon",
+    sourceMission: "Into the Mouth of Hell",
+    image: "IntoTheMouthOfHell.png",
+    deployment: "Defence in depth",
+    briefing: "The attacker must cross mine belts, a shattered glacis and the final western rampart before the defenders can trade enough ground for time.",
+    objectives: [
+      "Divide the defender's half into outer, middle and inner defence zones. The attacker scores 5VP the first time each round it controls an objective in a deeper zone.",
+      "The defender scores 5VP for each zone containing an objective it controls at the end of its Command phase, to a maximum of 15VP.",
+      "At battle's end, the attacker scores 15VP if its Warlord is in the inner zone; otherwise the defender scores 15VP."
+    ],
+    warzoneTitle: "Interlocking Bunkers",
+    warzone: "Defender Infantry wholly within a wall or ruin can Set to Defend even if that terrain would not normally allow it. The first time an attacker enters each deeper zone, that unit takes a Hazard test.",
+    victorBonus: WALL_FINALE_BONUS,
+    fit: "Adapted from Into the Mouth of Hell: successive defensive depths suit the western bulwark's layered bunkers and approach trenches."
+  }),
+  mission({
+    id: "ring-brazen-gate",
+    title: "The Brazen Gate",
+    source: "armageddon",
+    sourceMission: "Brazen Bridge",
+    image: "BrazenBridge.png",
+    deployment: "Fortified gate crossing",
+    briefing: "A single armoured gate divides the armies. The attacker must force the crossing and hold the inner bridgehead before the garrison closes it again.",
+    objectives: [
+      "The attacker scores 5VP for each gate objective controlled at the end of its Command phase, to a maximum of 10VP per round.",
+      "The defender scores 5VP for each gate objective it controls and 5VP if no attacker unit is wholly inside the wall.",
+      "At battle's end, the attacker scores 15VP for controlling the inner bridgehead; otherwise the defender scores 15VP."
+    ],
+    warzoneTitle: "Adamantine Chokepoint",
+    warzone: "Treat the wall line as impassable except through the marked gate and breach. Units in those lanes cannot receive the Benefit of Cover; Infantry controlling a gate objective gain Steadfast.",
+    victorBonus: WALL_FINALE_BONUS,
+    fit: "Adapted from Brazen Bridge: its narrow crossing and far-side bridgehead directly model the northeastern curtain's armoured gate."
+  }),
+  mission({
+    id: "ring-breach-charges",
+    title: "Charges on the Curtain",
+    source: "nachmund",
+    sourceMission: "Saboteurs",
+    image: "Saboteurs.png",
+    deployment: "Demolition assault",
+    briefing: "Assault teams race between the eastern wall supports, planting breaching charges while the garrison hunts the saboteurs and cuts the fuses.",
+    objectives: [
+      "The attacker can complete Plant Charge on any of the three wall-support objectives it controls, scoring 6VP and placing a Charge token.",
+      "The defender can complete Disarm on a charged support it controls, removing the token and scoring 4VP.",
+      "At battle's end, the attacker scores 6VP for each surviving Charge token; the defender scores 5VP for each support that was never charged."
+    ],
+    warzoneTitle: "Structural Collapse",
+    warzone: "When a charge is planted, units within range of that objective take a Hazard test. If a Charge remains at battle's end, the terrain feature nearest that support becomes unstable and no longer grants Cover.",
+    victorBonus: WALL_FINALE_BONUS,
+    fit: "Adapted from Saboteurs: planting and disarming charges makes the centre of the eastern curtain a genuine demolition battle."
+  }),
+  mission({
+    id: "ring-storm-rampart",
+    title: "Storm the Eastern Rampart",
+    source: "armageddon",
+    sourceMission: "Assault the Warp Gate",
+    image: "AssaultTheWarpGate.png",
+    deployment: "Converging rampart assault",
+    briefing: "The attacker must seize two approach nodes before the sealed eastern rampart can be opened; the defender must prevent both keys falling at once.",
+    objectives: [
+      "Score 5VP for each approach objective controlled at the end of your Command phase, to a maximum of 10VP per round.",
+      "If the attacker controls both approaches, one eligible unit can complete Open the Rampart on the gate objective for 10VP.",
+      "At battle's end, the attacker scores 15VP if the rampart was opened and it controls the gate; otherwise the defender scores 15VP."
+    ],
+    warzoneTitle: "Sealed Defence Grid",
+    warzone: "The gate objective cannot be controlled by the attacker until both approach objectives are held. Once opened, units within range of the gate take a Hazard test as the defence grid overloads.",
+    victorBonus: WALL_FINALE_BONUS,
+    fit: "Adapted from Assault the Warp Gate: linked approach objectives make the eastern bulwark feel like a sealed fortress entrance."
+  }),
+  mission({
+    id: "ring-front-line",
+    title: "The Southern Line",
+    source: "nachmund",
+    sourceMission: "Front Line Warfare",
+    image: "FrontLineWarfare.png",
+    deployment: "Opposed siege lines",
+    briefing: "Parallel trench systems face the southwestern curtain. Victory demands taking the enemy's forward works without surrendering your own.",
+    objectives: [
+      "Score 5VP for your rear objective, 5VP for the central trench objective and 10VP for the objective nearest the enemy line, to a maximum of 15VP per round.",
+      "The first time each round you capture an objective your opponent controlled, score 3VP.",
+      "At battle's end, score 10VP if the enemy does not control your rear objective."
+    ],
+    warzoneTitle: "Siegeworks",
+    warzone: "Infantry that Remain Stationary within a trench or barricade gain a 5+ invulnerable save against ranged attacks until their next Movement phase.",
+    victorBonus: WALL_FINALE_BONUS,
+    fit: "Adapted from Front Line Warfare: its advancing objective line matches the siege trenches dug before the southwestern wall."
+  }),
+  mission({
+    id: "ring-hold-gatehouse",
+    title: "Hold the Gatehouse",
+    source: "nachmund",
+    sourceMission: "Final Stand",
+    image: "FinalStand.png",
+    deployment: "Encircled gatehouse",
+    briefing: "The southern gatehouse has become an isolated redoubt. Its garrison must hold until relief arrives while attackers close from every side.",
+    objectives: [
+      "The defender scores 10VP each round it controls the gatehouse objective, reduced to 5VP from battle round four onward.",
+      "The attacker scores 5VP for each outer objective it controls and 10VP the first time it captures the gatehouse.",
+      "At battle's end, the player controlling the gatehouse scores 15VP."
+    ],
+    warzoneTitle: "Murder Holes",
+    warzone: "Defender Infantry on the gatehouse gain Feel No Pain 6+. Once the gatehouse changes hands, this benefit is lost for the rest of the battle.",
+    victorBonus: WALL_FINALE_BONUS,
+    fit: "Adapted from Final Stand: an encircled last redoubt is the strongest fit for the central bastion in the southern arc."
+  }),
+  mission({
+    id: "ring-perfect-fortress",
+    title: "Break the Perfect Fortress",
+    source: "armageddon",
+    sourceMission: "Total Domination",
+    additionalSources: ["heresyFortress"],
+    image: "TotalDomination.png",
+    deployment: "Fortified control sector",
+    briefing: "The southeastern curtain is a self-contained fortress. The attacker must strip away its outer controls before assaulting the command post at its heart.",
+    objectives: [
+      "The attacker scores 5VP the first time it captures each of the two outer control objectives.",
+      "The command-post objective becomes active for the attacker only after an outer control objective has been captured; controlling it scores 10VP per Command phase.",
+      "The defender scores 5VP for each outer control it holds and 5VP if no enemy unit is within the command-post sector, to a maximum of 15VP per round."
+    ],
+    warzoneTitle: "Interlocking Fire Plan",
+    warzone: "At the start of each defender Shooting phase, select one outer control it holds. Defender units wholly within that sector improve the Armour Penetration of ranged attacks by 1 until phase end.",
+    victorBonus: WALL_FINALE_BONUS,
+    fit: "It uses Total Domination's contested control points, with the fortified command-node structure inspired by the Horus Heresy scenario The Breaking of the Perfect Fortress."
+  }),
+  mission({
+    id: "ring-north-cannon",
+    title: "Silence Crownfire Battery",
+    source: "nachmund",
+    sourceMission: "Saboteurs",
+    additionalSources: ["heresyDefences"],
+    image: "Saboteurs.png",
+    deployment: "Battery demolition raid",
+    briefing: "The northern Annihilator Cannon dominates every approach. Raiders must disable its two power relays before they can sabotage the weapon itself.",
+    objectives: [
+      "The attacker can complete Disable Relay on either flank relay it controls, scoring 6VP. A disabled relay remains disabled.",
+      "After both relays are disabled, the attacker can complete Silence the Gun on the cannon objective for 15VP.",
+      "The defender scores 5VP per active relay at the end of its Command phase and 10VP at battle's end if the cannon was not silenced."
+    ],
+    warzoneTitle: "Targeting Solution",
+    warzone: "At the end of each defender Shooting phase while at least one relay is active, select one attacker unit visible to the cannon objective. On a 4+, it suffers D3 mortal wounds; subtract 1 from the roll if one relay has been disabled.",
+    victorBonus: ANNIHILATOR_FINALE_BONUS,
+    fit: "Adapted from Saboteurs, with the reserve-denial and fixed-gun character of Horus Heresy orbital defences. The relay sequence makes the northern cannon a fortress system rather than a single objective."
+  }),
+  mission({
+    id: "ring-west-cannon",
+    title: "The Perfect Battery",
+    source: "nachmund",
+    sourceMission: "Final Stand",
+    additionalSources: ["heresyFortress"],
+    image: "FinalStand.png",
+    deployment: "Encircled gun platform",
+    briefing: "The southwestern Annihilator Cannon is built as a fortress within the fortress. Its crew must hold the command dais against a concentric assault.",
+    objectives: [
+      "The defender scores 10VP each round it controls the cannon dais, reduced to 5VP from battle round four onward.",
+      "The attacker scores 5VP for each targeting node it controls and 10VP the first time it captures the cannon dais.",
+      "At battle's end, score 15VP for controlling the cannon dais and 5VP for each targeting node controlled."
+    ],
+    warzoneTitle: "Overlapping Fields of Fire",
+    warzone: "While the defender controls both targeting nodes, defender units on the cannon dais gain the Benefit of Cover and can re-roll Hit rolls of 1 when making ranged attacks. Each captured node removes one of those benefits, attacker choosing first.",
+    victorBonus: ANNIHILATOR_FINALE_BONUS,
+    fit: "It combines Final Stand's surrounded redoubt with the interlocking fortified positions of the Horus Heresy scenario The Breaking of the Perfect Fortress."
+  }),
+  mission({
+    id: "ring-east-cannon",
+    title: "Blind Wrath Battery",
+    source: "pariah",
+    sourceMission: "Quantum Siege",
+    image: "QuantumSiege.png",
+    deployment: "Shield-node siege",
+    briefing: "A lattice of shield nodes protects the southeastern Annihilator Cannon. The attacker must flip the network before the main weapon can be seized.",
+    objectives: [
+      "Each flank objective is a shield node. A unit controlling one can complete Invert Node, changing it to that player's control and scoring 5VP.",
+      "The cannon objective can be controlled by the attacker only while it controls at least two shield nodes; controlling it scores 10VP per Command phase.",
+      "At battle's end, score 5VP for each shield node you control and 10VP for controlling the cannon."
+    ],
+    warzoneTitle: "Quantum Bulwark",
+    warzone: "A unit within range of a shield node controlled by its player has a 5+ invulnerable save against ranged attacks. This protection cannot be used against attacks made within 6 inches.",
+    victorBonus: ANNIHILATOR_FINALE_BONUS,
+    fit: "Adapted from Quantum Siege: switchable shield nodes give the eastern cannon a distinct defence puzzle before the emplacement can be captured."
   })
 ];
 
@@ -652,8 +903,25 @@ const MISSION_BY_TILE = [
   "ng-final-stand", "ng-strategic-strike", "dom-meatgrinder", "dom-battlefield-dominance", "pn-unstable-archeotech", "dom-secure-asset", "arm-trail-blood", "arm-lighting-path", "pn-miasma", "arm-brazen-bridge"
 ];
 
+const DEFENCE_RING_MISSION_BY_TILE = {
+  T12: "ring-run-curtain",
+  T13: "ring-north-cannon",
+  T14: "ring-brazen-gate",
+  T17: "ring-break-cordon",
+  T20: "ring-breach-charges",
+  T23: "ring-western-depths",
+  T27: "ring-storm-rampart",
+  T31: "ring-west-cannon",
+  T34: "ring-east-cannon",
+  T40: "ring-front-line",
+  T41: "ring-hold-gatehouse",
+  T42: "ring-perfect-fortress"
+};
+
 export function missionForTerritory(index, territoryName, terrainLabel) {
-  const selected = MISSIONS_BY_ID[MISSION_BY_TILE[index]];
+  const territoryId = `T${String(index + 1).padStart(2, "0")}`;
+  const selectedMissionId = DEFENCE_RING_MISSION_BY_TILE[territoryId] ?? MISSION_BY_TILE[index];
+  const selected = MISSIONS_BY_ID[selectedMissionId];
   if (!selected) throw new Error(`No mission is assigned to territory index ${index}.`);
   const { id: missionId, ...missionData } = selected;
 
@@ -668,5 +936,6 @@ export function missionForTerritory(index, territoryName, terrainLabel) {
 export const MISSION_META = {
   count: MISSION_LIBRARY.length,
   assignedCount: MISSION_BY_TILE.length,
-  sourceBooks: Object.values(SOURCES).map((source) => source.book)
+  sourceBooks: Object.values(SOURCES).map((source) => source.book),
+  defenceRingMissionCount: Object.keys(DEFENCE_RING_MISSION_BY_TILE).length
 };

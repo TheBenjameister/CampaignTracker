@@ -559,6 +559,16 @@ h1 em {
   stroke-width: 3px;
 }
 
+.territory-hex.is-wall .hex-outline {
+  stroke: rgba(219, 174, 93, 0.9);
+  stroke-width: 3;
+}
+
+.territory-hex.is-cannon .hex-outline {
+  stroke: #f2834d;
+  stroke-width: 4;
+}
+
 .territory-hex:hover .hex-fill,
 .territory-hex:focus .hex-fill,
 .territory-hex.is-selected .hex-fill {
@@ -901,6 +911,7 @@ h1 em {
 .source-block a {
   display: inline-flex;
   margin-top: 14px;
+  margin-right: 18px;
   color: var(--accent-pale);
   font-size: 10px;
   font-weight: 700;

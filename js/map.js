@@ -56,6 +56,8 @@ export function renderHexMap(container, {
         locked ? "is-locked" : "",
         territory.headquartersFor ? "is-headquarters" : "",
         territory.strategic ? "is-strategic" : "",
+        territory.defenceRole === "Curtain wall" ? "is-wall" : "",
+        territory.defenceRole === "Annihilator Cannon" ? "is-cannon" : "",
         territory.centralObjective ? "is-centre" : "",
         selectedId === territory.id ? "is-selected" : ""
       ].filter(Boolean).join(" "),
@@ -87,6 +89,10 @@ export function renderHexMap(container, {
       ? "LOCK"
       : territory.headquartersFor
         ? "HQ"
+        : territory.defenceRole === "Annihilator Cannon"
+          ? `C${territory.id.slice(1)}`
+          : territory.defenceRole === "Curtain wall"
+            ? `W${territory.id.slice(1)}`
         : territory.strategic
           ? "◆"
           : territory.id.slice(1);
