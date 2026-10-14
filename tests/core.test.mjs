@@ -10,6 +10,7 @@ import { access } from "node:fs/promises";
 import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import { buildWorld } from "../js/world.js";
+import { MISSION_LIBRARY } from "../js/missions.js";
 
 const territory = {
   id: "T02",
@@ -159,4 +160,25 @@ test("the campaign page includes all five disposition agendas", async () => {
   assert.match(html, /territory mission decides victory and capture/i);
   assert.match(html, /no more than three Agenda Achieved results/i);
   assert.match(html, /never award RP or decide territory control/i);
+});
+
+test("mission wording follows the objective-terrain convention", async () => {
+  const appSource = await readFile(fileURLToPath(new URL("../js/app.js", import.meta.url)), "utf8");
+  const missionText = MISSION_LIBRARY
+    .flatMap((mission) => [...mission.objectives, mission.warzone])
+    .join("\n");
+
+  assert.match(appSource, /That entire terrain area is the objective/i);
+  assert.match(appSource, /Measure distances to or from an objective using the closest part/i);
+  assert.doesNotMatch(missionText, /within range of (?:an?|the|that|this|each|any) objective/i);
+  assert.doesNotMatch(missionText, /\bon (?:an?|the) [a-z -]*objective\b/i);
+
+  const temporalRaid = MISSION_LIBRARY.find((mission) => mission.id === "arm-temporal-raid");
+  assert.match(temporalRaid.briefing, /portable objective markers instead of terrain objectives/i);
+  assert.match(temporalRaid.objectives.join(" "), /flat 40mm Chronal Anchor marker/i);
+
+  for (const missionId of ["arm-metamorphosis", "arm-seal-rifts", "dom-sabotage"]) {
+    const text = MISSION_LIBRARY.find((mission) => mission.id === missionId).objectives.join(" ");
+    assert.match(text, /terrain remains/i);
+  }
 });

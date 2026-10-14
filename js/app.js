@@ -159,6 +159,19 @@ function renderTerritoryPanel() {
         </figure>
       </section>
 
+      <section class="card-block objective-terrain-block">
+        <h4>11th edition battlefield rule</h4>
+        <h5>Objective Terrain</h5>
+        <p>Unless this mission specifically uses a portable marker, each objective symbol on the deployment map identifies a location that must coincide with a suitable terrain area. That entire terrain area is the objective.</p>
+        <ul class="terrain-objective-list">
+          <li>A model is within range of a terrain objective while it is within that terrain area.</li>
+          <li>Measure distances to or from an objective using the closest part of its terrain area.</li>
+          <li>If no suitable terrain area covers a marked location, use a flat 40mm objective marker and the normal 3-inch horizontal and 5-inch vertical range.</li>
+          <li>Deactivating an objective never removes the terrain feature. Place the stated status token within it and stop treating that terrain area as an objective.</li>
+        </ul>
+        <a href="https://assets.warhammer-community.com/eng_01-06_warhammer40k_new40k_core_rules-was6fbu1ix-hfewhmxyiy.pdf" target="_blank" rel="noreferrer">Read the official 11th-edition objective rules ↗</a>
+      </section>
+
       <section class="card-block">
         <h4>Narrative mission</h4>
         <h5>${escapeHtml(territory.missionTitle)}</h5>

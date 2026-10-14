@@ -28,6 +28,8 @@ async function checkMap(page, expectedWidth) {
   await page.locator(".deployment-map-image").waitFor({ state: "visible" });
   await page.waitForFunction(() => document.querySelector(".deployment-map-image")?.naturalWidth > 0);
   assert.match(await page.locator(".deployment-map-image").getAttribute("src"), /^assets\/deployments\/.+\.png$/);
+  assert.equal(await page.locator(".objective-terrain-block").count(), 1, "battlefields should explain the objective-terrain convention");
+  assert.match(await page.locator(".objective-terrain-block").textContent(), /entire terrain area is the objective/i);
   assert.equal(await page.locator(".victor-block").count(), 1, "territory card should include a victor bonus");
   assert.equal(await page.locator(".source-block a").count(), 1, "territory card should link to its source rules");
 

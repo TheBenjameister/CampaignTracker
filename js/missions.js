@@ -106,11 +106,11 @@ export const MISSION_LIBRARY = [
     briefing: "The battlefield is changing beneath the armies. Valuable sites vanish one by one as the war zone transforms.",
     objectives: [
       "Score 5VP for each objective you control at the end of your Command phase (maximum 15VP).",
-      "After scoring in rounds two to four, the player going second removes one no-man's-land objective they do not control.",
+      "After scoring in rounds two to four, the player going second deactivates one no-man's-land terrain objective they do not control. Place a Collapse token within it; the terrain remains, but its terrain area ceases to be an objective.",
       "From round four onward, each remaining no-man's-land objective is worth 5VP more."
     ],
     warzoneTitle: "Living Battlefield",
-    warzone: "When an objective is removed, units within range immediately make a Hazard roll, then the surrounding terrain becomes hazardous ground.",
+    warzone: "When a terrain objective is deactivated, every unit with one or more models within its terrain area immediately makes one Hazard roll. That terrain area then becomes hazardous ground.",
     victorBonus: "One participating Character may purchase its next Enhancement for 5 fewer RP, to a minimum of 5 RP.",
     fit: "Its disappearing objectives suit land being broken apart by volcanic or tectonic change."
   }),
@@ -123,7 +123,7 @@ export const MISSION_LIBRARY = [
     briefing: "Advance through hostile ground and ignite a chain of signal beacons before the enemy can smother it.",
     objectives: [
       "Score 5VP for controlling one or more objectives and 5VP for controlling more than your opponent.",
-      "An Infantry unit can begin Light the Beacon at the end of its Movement phase while within range of a neutral objective; complete it at the end of your turn for 5VP.",
+      "An eligible Infantry unit with one or more models within a neutral terrain objective can begin Light the Beacon at the end of its Movement phase; complete it at the end of your turn for 5VP.",
       "A beacon already lit by the enemy can be extinguished by completing the same action."
     ],
     warzoneTitle: "Unbound Threats",
@@ -144,7 +144,7 @@ export const MISSION_LIBRARY = [
       "Score 5VP at the end of the battle if you control both objectives nearest the centre."
     ],
     warzoneTitle: "Out of Time",
-    warzone: "Units wholly within range of an inactive objective cannot be targeted from more than 18 inches away, but cannot perform mission actions.",
+    warzone: "Units wholly within the terrain area of an inactive objective cannot be targeted from more than 18 inches away, but cannot perform mission actions.",
     victorBonus: "The winner may reroll one Battle Honour draw earned from this battle.",
     fit: "Its shifting lanes make a hazardous pass or unstable frontier feel unpredictable without extra bookkeeping."
   }),
@@ -157,11 +157,11 @@ export const MISSION_LIBRARY = [
     briefing: "The centre is a sacrificial nexus. Control it long enough to complete the rite—or deny the enemy the blood it demands.",
     objectives: [
       "Score 5VP for controlling one or more objectives and 5VP for controlling more than your opponent.",
-      "A non-Battle-shocked unit on the central objective can begin the Offering action; it completes at the end of your next Command phase for 10VP.",
+      "An eligible, non-Battle-shocked unit controlling the central terrain objective can begin the Offering action; it completes at the end of your next Command phase for 10VP.",
       "If that unit is destroyed before completion, its opponent scores 5VP."
     ],
     warzoneTitle: "The Ground Hungers",
-    warzone: "Each time a unit is destroyed within range of the central objective, improve the Objective Control of models there by 1 until the end of the round.",
+    warzone: "Each time a unit with one or more models within the central terrain objective is destroyed, improve the Objective Control of models within that terrain area by 1 until the end of the round.",
     victorBonus: "The winning player marks one additional participating unit for a Battle Honour draw.",
     fit: "Its central ritual suits cratered killing fields and sites saturated by old massacres."
   }),
@@ -178,7 +178,7 @@ export const MISSION_LIBRARY = [
       "At battle's end, score 5VP if you control more objectives outside your deployment zone."
     ],
     warzoneTitle: "Gravitic Reversal",
-    warzone: "Units near unstable objectives add 2 inches to vertical movement but subtract 2 inches from Advance and Charge rolls.",
+    warzone: "Units with one or more models within an unstable terrain objective add 2 inches to vertical movement but subtract 2 inches from Advance and Charge rolls.",
     victorBonus: "The winner may draw its next Battle Honour from either the Battle Skill or Weapon Modification category.",
     fit: "Its punishing movement puzzle belongs on steep ridges and gravity-torn high ground."
   }),
@@ -190,12 +190,12 @@ export const MISSION_LIBRARY = [
     deployment: "Rift containment",
     briefing: "Reality tears open at the objective sites. Armies race to close the breaches while fighting for the surviving ground.",
     objectives: [
-      "An Infantry or Beast unit can begin Seal the Rift on a no-man's-land objective it controls; complete it at the end of your turn and remove that objective.",
+      "An eligible Infantry or Beast unit can begin Seal the Rift while it controls a no-man's-land terrain objective. Complete it at the end of your turn, place a Sealed Rift token within that terrain area and deactivate the objective; the terrain remains in place.",
       "Score 10VP for sealing a rift in no man's land, or 15VP for one in enemy territory.",
       "Score 5VP for each unsealed objective you control at the end of your Command phase (maximum 10VP)."
     ],
     warzoneTitle: "Reality Backlash",
-    warzone: "When a rift is sealed, every unit within 6 inches makes one Hazard roll; the sealing unit may reroll its result.",
+    warzone: "When a rift is sealed, every unit within 6 inches of that terrain objective makes one Hazard roll; measure from the closest part of its terrain area. The sealing unit may reroll its result.",
     victorBonus: "The winning alliance gains 3 RP. If it sealed three or more rifts, its first roster swap before the next battle costs 5 fewer RP.",
     fit: "A containment mission is ideal for the sealed approaches to the Dominatus core."
   }),
@@ -212,7 +212,7 @@ export const MISSION_LIBRARY = [
       "At battle's end, the attacker scores 15VP for controlling the far bridgehead; otherwise the defender scores 15VP."
     ],
     warzoneTitle: "Murder Lanes",
-    warzone: "Units on the marked bridge lanes cannot receive the Benefit of Cover. Infantry on a bridge objective gain Steadfast while not Battle-shocked.",
+    warzone: "Units on the marked bridge lanes cannot receive the Benefit of Cover. Infantry units controlling a bridge terrain objective gain Steadfast while not Battle-shocked.",
     victorBonus: "The victor's alliance gains 2 RP and may choose who has first turn in its next battle fought on this territory.",
     fit: "Its defended crossing is a natural match for a fortress gate or fortified causeway."
   }),
@@ -272,15 +272,15 @@ export const MISSION_LIBRARY = [
     title: "Temporal Raid",
     source: "armageddon",
     image: "TemporalRaid.png",
-    deployment: "Mobile objectives",
-    briefing: "Chronal anchors can be dragged out of the war zone before they vanish. Every objective becomes cargo.",
+    deployment: "Mobile objective markers",
+    briefing: "Chronal anchors can be dragged out of the war zone before they vanish. This mission deliberately uses portable objective markers instead of terrain objectives.",
     objectives: [
-      "A unit controlling an objective can move it up to 6 inches at the end of its Movement phase, but cannot Advance or Charge that turn.",
-      "Score 5VP for each objective wholly within your territory at the end of your Command phase (maximum 15VP).",
-      "Remove and score 10VP for each objective moved wholly into your deployment zone."
+      "At every objective location on the deployment map, place a flat 40mm Chronal Anchor marker instead of designating a terrain objective. A model is within range of an Anchor while within 3 inches horizontally and 5 inches vertically of it.",
+      "A unit controlling an Anchor can move that marker up to 6 inches at the end of its Movement phase, but cannot Advance or Charge that turn. Score 5VP for each Anchor wholly within your territory at the end of your Command phase (maximum 15VP).",
+      "Extract and score 10VP for each Anchor moved wholly into your deployment zone, then remove that marker."
     ],
     warzoneTitle: "Chronal Drag",
-    warzone: "Units moving an objective subtract 1 from Hit rolls until the start of their next turn.",
+    warzone: "Units moving a Chronal Anchor subtract 1 from Hit rolls until the start of their next turn.",
     victorBonus: "The winning alliance gains 3 RP; if it extracted two objectives, one adjacent neutral tile costs 1 fewer draft point in any later catch-up draft.",
     fit: "Its movable anchors evoke salvage hauled through tides, floodplains and broken causeways."
   }),
@@ -297,7 +297,7 @@ export const MISSION_LIBRARY = [
       "Both players score 5VP for controlling the central objective, regardless of its Veil level."
     ],
     warzoneTitle: "Thinning Reality",
-    warzone: "When an objective reaches level 1 or 5, units within range make a Battle-shock test and attacks there gain Ignores Cover until round end.",
+    warzone: "When a terrain objective reaches level 1 or 5, every unit with one or more models within its terrain area makes a Battle-shock test. Attacks made by those units gain Ignores Cover until round end.",
     victorBonus: "The winning alliance gains 2 RP and may reroll one post-battle Battle Honour draw.",
     fit: "Its escalating ritual struggle belongs at the reality-warped boundary of the central vault."
   }),
@@ -331,7 +331,7 @@ export const MISSION_LIBRARY = [
       "The disruptor cannot claim the final campaign victory, but scores 5 disruption points for each approach it contests; the teams decide how those points alter the finale."
     ],
     warzoneTitle: "Cataclysmic Gate",
-    warzone: "At the end of every battle round, every unit within range of the central objective makes a Hazard roll. In the finale, use Onslaught battlefield size and team activation agreed by the players.",
+    warzone: "At the end of every battle round, every unit with one or more models within the central terrain objective makes a Hazard roll. In the finale, use Onslaught battlefield size and team activation agreed by the players.",
     victorBonus: "The leading alliance that controls the central objective at battle's end wins the campaign. If neither does, total finale VP breaks the tie, then total faction Battle Honours, then the Warmaster decides.",
     fit: "This is the purpose-built climax for the central Dominatus Engine and the campaign's three-alliance finale."
   }),
@@ -361,7 +361,7 @@ export const MISSION_LIBRARY = [
     deployment: "Excavation raid",
     briefing: "Blackstone caches lie beneath the objectives. Extract them before the enemy secures the site.",
     objectives: [
-      "Place one Cache token on each no-man's-land objective. An Infantry unit can pick up a Cache at the end of its Movement phase.",
+      "Place one Cache token within each no-man's-land terrain objective. An eligible Infantry unit controlling that objective can pick up its Cache at the end of its Movement phase.",
       "Score 5VP for carrying a Cache and 10VP when its carrier reaches your battlefield edge; then remove it.",
       "Score 5VP for controlling the central excavation at the end of each battle round."
     ],
@@ -395,8 +395,8 @@ export const MISSION_LIBRARY = [
     deployment: "Archeotech recovery",
     briefing: "An unstable device must be moved from the centre to a secure extraction point without detonating it.",
     objectives: [
-      "A non-Battle-shocked Infantry unit controlling the central objective can pick up the Device at the end of its Movement phase.",
-      "Score 5VP each Command phase while carrying it, and 15VP if it reaches your extraction objective.",
+      "A non-Battle-shocked Infantry unit controlling the central terrain objective can pick up the Device at the end of its Movement phase.",
+      "Score 5VP each Command phase while carrying it, and 15VP if the carrier controls your extraction terrain objective.",
       "If the carrier is destroyed, place the Device where the last model was removed."
     ],
     warzoneTitle: "Volatile Payload",
@@ -414,10 +414,10 @@ export const MISSION_LIBRARY = [
     objectives: [
       "Score 5VP for controlling one or more objectives and 5VP for controlling more than your opponent.",
       "At the end of each battle round, score 5VP if you control an objective in enemy territory.",
-      "An Infantry unit can Survey the Miasma on a no-man's-land objective for 3VP and reveal the surrounding sector until next round."
+      "An eligible Infantry unit controlling a no-man's-land terrain objective can Survey the Miasma for 3VP and reveal the surrounding sector until next round."
     ],
     warzoneTitle: "Pariah Miasma",
-    warzone: "Models more than 18 inches apart are not visible to one another. A surveyed objective ignores this rule within 6 inches.",
+    warzone: "Models more than 18 inches apart are not visible to one another. Models within 6 inches of a surveyed terrain objective ignore this rule; measure from the closest part of that terrain area.",
     victorBonus: "The winner gains 2 RP and may place one unit into Strategic Reserves for 0CP in its next battle here.",
     fit: "Its short sight lines and beacon play suit toxic marshes and storm-lashed coasts."
   }),
@@ -434,7 +434,7 @@ export const MISSION_LIBRARY = [
       "For team games, total the scores of allied players and cap primary VP at 50 per alliance."
     ],
     warzoneTitle: "Null Nexus",
-    warzone: "Aura abilities have a maximum range of 6 inches. Units on the central objective cannot use re-rolls unless their alliance controls two acquisition nodes.",
+    warzone: "Aura abilities have a maximum range of 6 inches. Units with one or more models within the central terrain objective cannot use re-rolls unless their alliance controls two acquisition nodes.",
     victorBonus: "The winning alliance gains 5 RP. In a finale, controlling the central Relic can be used as the first tiebreaker after total VP.",
     fit: "Its large-field convergence works for a core sector where several armies can collide."
   }),
@@ -448,7 +448,7 @@ export const MISSION_LIBRARY = [
     briefing: "A rapid strike force must seize the control points before the defender can turn the wider installation against it.",
     objectives: [
       "Score 5VP for each control point held at the end of your Command phase (maximum 15VP).",
-      "A unit can complete Designate Target on an enemy-territory objective for 5VP.",
+      "An eligible unit controlling a terrain objective in enemy territory can complete Designate Target for 5VP.",
       "At battle's end, score 10VP if you control the objective furthest from your deployment zone."
     ],
     warzoneTitle: "Precision Reserves",
@@ -464,7 +464,7 @@ export const MISSION_LIBRARY = [
     deployment: "Scattered stockpiles",
     briefing: "Raid scattered supply caches and carry them back before the enemy can cut off the withdrawal route.",
     objectives: [
-      "Each no-man's-land objective begins with one Supply token. A unit controlling it can pick the token up at the end of its Movement phase.",
+      "Place one Supply token within each no-man's-land terrain objective. An eligible unit controlling that objective can pick up its token at the end of its Movement phase.",
       "Score 5VP while carrying a Supply token and 10VP when it reaches your deployment zone.",
       "A destroyed carrier drops its token; a unit can carry only one."
     ],
@@ -515,12 +515,12 @@ export const MISSION_LIBRARY = [
     deployment: "Industrial infiltration",
     briefing: "Plant charges on the enemy's machinery while finding and disarming explosives placed in your own lines.",
     objectives: [
-      "Infantry can complete Plant Charges on an enemy-territory objective for 5VP; place a Charge token there.",
+      "Eligible Infantry controlling a terrain objective in enemy territory can complete Plant Charges for 5VP; place a Charge token within that terrain area.",
       "A unit controlling a charged objective can complete Disarm to remove the token for 3VP.",
       "At battle's end, score 5VP for each surviving Charge token, to a maximum of 15VP."
     ],
     warzoneTitle: "Chain Reaction",
-    warzone: "When a charged objective detonates at battle's end, units within range make a Hazard roll. Vehicles make two.",
+    warzone: "When a charged terrain objective detonates at battle's end, every unit with one or more models within its terrain area makes a Hazard roll. Vehicles make two.",
     victorBonus: "The winning alliance's first roster swap before its next battle costs 5 fewer RP.",
     fit: "Its charge-and-disarm contest belongs among reactors, refineries and manufactorum machinery."
   }),
@@ -537,7 +537,7 @@ export const MISSION_LIBRARY = [
       "At battle's end, score 10VP for controlling the central checkpoint."
     ],
     warzoneTitle: "Crossfire Corridor",
-    warzone: "A unit in the central corridor cannot receive the Benefit of Cover unless it is wholly within terrain. Units on flank objectives gain Ignores Cover.",
+    warzone: "A unit in the central corridor cannot receive the Benefit of Cover unless it is wholly within terrain. Units controlling flank terrain objectives gain Ignores Cover.",
     victorBonus: "The winner gains 2 RP; one participating Vehicle or Mounted unit can reroll its next Battle Honour draw.",
     fit: "Its lethal corridor turns a canyon, pass or causeway into a proper running battle."
   }),
@@ -550,7 +550,7 @@ export const MISSION_LIBRARY = [
     briefing: "There is no subtlety left: two battle groups collide across a wide front and victory belongs to the alliance that still holds ground.",
     objectives: [
       "Use an Onslaught-size battlefield. Score 5VP for controlling one objective, another 5VP for controlling two, and another 5VP for controlling more than the enemy.",
-      "Score 2VP the first time each round an enemy unit is destroyed (5VP instead if it was on an objective).",
+      "Score 2VP the first time each round an enemy unit is destroyed (5VP instead if it was controlling an objective).",
       "For team games, allied players share the 50VP primary cap."
     ],
     warzoneTitle: "Total Commitment",
@@ -585,11 +585,11 @@ export const MISSION_LIBRARY = [
     briefing: "The battle is decided by attrition around a narrow centre, where casualties matter as much as ground held.",
     objectives: [
       "Score 5VP for controlling one or more objectives and 5VP for controlling more than your opponent.",
-      "Once per round, score 3VP when you destroy an enemy unit; score 5VP instead if it was within range of an objective.",
+      "Once per round, score 3VP when you destroy an enemy unit; score 5VP instead if one or more models from that unit were within a terrain objective when it was destroyed.",
       "At battle's end, score 10VP if more than half your starting units remain."
     ],
     warzoneTitle: "Grinding Advance",
-    warzone: "Units below Half-strength gain +1 to Battle-shock tests while within range of an objective.",
+    warzone: "Units below Half-strength gain +1 to Battle-shock tests while one or more of their models are within a terrain objective.",
     victorBonus: "One surviving participating unit from the winner may draw its Battle Honour from the Battle Skill category.",
     fit: "Its attritional focus suits ash wastes where shelter is scarce and losses mount quickly."
   }),
@@ -619,7 +619,7 @@ export const MISSION_LIBRARY = [
     briefing: "Search the ruined districts, recover intelligence and prevent the enemy from assembling the full picture.",
     objectives: [
       "Score 5VP for controlling one or more objectives and 5VP for controlling more than your opponent.",
-      "An Infantry unit can complete Gather Intel on a no-man's-land objective for 4VP; each objective can be searched once per player.",
+      "An eligible Infantry unit controlling a no-man's-land terrain objective can complete Gather Intel for 4VP; each objective can be searched once per player.",
       "At battle's end, score 10VP if you gathered intel from three different objectives."
     ],
     warzoneTitle: "Broken Datavaults",
@@ -636,11 +636,11 @@ export const MISSION_LIBRARY = [
     briefing: "Drive down the length of the installation and destroy the enemy's infrastructure while guarding your own.",
     objectives: [
       "Score 5VP for controlling one or more objectives and 5VP for controlling more than your opponent.",
-      "An Infantry unit can complete Sabotage on an objective in enemy territory for 8VP; remove that objective after scoring.",
-      "At battle's end, score 5VP for each of your home objectives still on the battlefield."
+      "An eligible Infantry unit controlling a terrain objective in enemy territory can complete Sabotage for 8VP. Place a Sabotaged token within that terrain area and deactivate the objective; the terrain remains in place.",
+      "At battle's end, score 5VP for each of your home terrain objectives that is still active."
     ],
     warzoneTitle: "Industrial Overload",
-    warzone: "When an objective is sabotaged, every unit within range makes a Hazard roll; Vehicles and Monsters make two.",
+    warzone: "When a terrain objective is sabotaged, every unit with one or more models within its terrain area makes a Hazard roll; Vehicles and Monsters make two.",
     victorBonus: "The winning alliance's first roster swap before the next battle costs 5 fewer RP.",
     fit: "Its lengthwise demolition run is built for industrial corridors and production lines."
   }),
@@ -654,7 +654,7 @@ export const MISSION_LIBRARY = [
     objectives: [
       "Score 5VP for controlling one or more objectives and 5VP for controlling more than your opponent.",
       "The central Asset can be picked up by a non-Battle-shocked Infantry unit; score 5VP each Command phase while carrying it.",
-      "Score 15VP if the carrier reaches your home objective; then remove the Asset."
+      "Score 15VP if the carrier controls your home terrain objective; then remove the Asset."
     ],
     warzoneTitle: "Unexploded Ordnance",
     warzone: "The first time each unit enters a crater, roll one D6. On a 1 it suffers D3 mortal wounds; on a 6 its Objective Control improves by 1 until round end.",
@@ -679,7 +679,7 @@ export const MISSION_LIBRARY = [
       "At battle's end, the attacker scores 15VP for controlling the gatehouse; otherwise the defender scores 15VP."
     ],
     warzoneTitle: "Enfilading Fire",
-    warzone: "Units in the central approach cannot receive the Benefit of Cover unless wholly within terrain. Defender units on a wall objective gain Ignores Cover against targets in that approach.",
+    warzone: "Units in the central approach cannot receive the Benefit of Cover unless wholly within terrain. Defender units controlling a wall terrain objective gain Ignores Cover against targets in that approach.",
     victorBonus: WALL_FINALE_BONUS,
     fit: "Adapted from The Gauntlet: its layered run through overlapping fire is ideal for the northwestern end of the western curtain."
   }),
@@ -746,12 +746,12 @@ export const MISSION_LIBRARY = [
     deployment: "Demolition assault",
     briefing: "Assault teams race between the eastern wall supports, planting breaching charges while the garrison hunts the saboteurs and cuts the fuses.",
     objectives: [
-      "The attacker can complete Plant Charge on any of the three wall-support objectives it controls, scoring 6VP and placing a Charge token.",
+      "An eligible attacker unit controlling any of the three wall-support terrain objectives can complete Plant Charge, scoring 6VP and placing a Charge token within that terrain area.",
       "The defender can complete Disarm on a charged support it controls, removing the token and scoring 4VP.",
       "At battle's end, the attacker scores 6VP for each surviving Charge token; the defender scores 5VP for each support that was never charged."
     ],
     warzoneTitle: "Structural Collapse",
-    warzone: "When a charge is planted, units within range of that objective take a Hazard test. If a Charge remains at battle's end, the terrain feature nearest that support becomes unstable and no longer grants Cover.",
+    warzone: "When a charge is planted, every unit with one or more models within that wall-support terrain objective takes a Hazard test. If a Charge remains at battle's end, that terrain objective becomes unstable and no longer grants Cover.",
     victorBonus: WALL_FINALE_BONUS,
     fit: "Adapted from Saboteurs: planting and disarming charges makes the centre of the eastern curtain a genuine demolition battle."
   }),
@@ -765,11 +765,11 @@ export const MISSION_LIBRARY = [
     briefing: "The attacker must seize two approach nodes before the sealed eastern rampart can be opened; the defender must prevent both keys falling at once.",
     objectives: [
       "Score 5VP for each approach objective controlled at the end of your Command phase, to a maximum of 10VP per round.",
-      "If the attacker controls both approaches, one eligible unit can complete Open the Rampart on the gate objective for 10VP.",
+      "If the attacker controls both approaches, one eligible unit controlling the gate terrain objective can complete Open the Rampart for 10VP.",
       "At battle's end, the attacker scores 15VP if the rampart was opened and it controls the gate; otherwise the defender scores 15VP."
     ],
     warzoneTitle: "Sealed Defence Grid",
-    warzone: "The gate objective cannot be controlled by the attacker until both approach objectives are held. Once opened, units within range of the gate take a Hazard test as the defence grid overloads.",
+    warzone: "The gate terrain objective cannot be controlled by the attacker until both approach objectives are held. Once opened, every unit with one or more models within its terrain area takes a Hazard test as the defence grid overloads.",
     victorBonus: WALL_FINALE_BONUS,
     fit: "Adapted from Assault the Warp Gate: linked approach objectives make the eastern bulwark feel like a sealed fortress entrance."
   }),
@@ -839,7 +839,7 @@ export const MISSION_LIBRARY = [
     briefing: "The northern Annihilator Cannon dominates every approach. Raiders must disable its two power relays before they can sabotage the weapon itself.",
     objectives: [
       "The attacker can complete Disable Relay on either flank relay it controls, scoring 6VP. A disabled relay remains disabled.",
-      "After both relays are disabled, the attacker can complete Silence the Gun on the cannon objective for 15VP.",
+      "After both relays are disabled, an eligible attacker unit controlling the cannon terrain objective can complete Silence the Gun for 15VP.",
       "The defender scores 5VP per active relay at the end of its Command phase and 10VP at battle's end if the cannon was not silenced."
     ],
     warzoneTitle: "Targeting Solution",
@@ -880,7 +880,7 @@ export const MISSION_LIBRARY = [
       "At battle's end, score 5VP for each shield node you control and 10VP for controlling the cannon."
     ],
     warzoneTitle: "Quantum Bulwark",
-    warzone: "A unit within range of a shield node controlled by its player has a 5+ invulnerable save against ranged attacks. This protection cannot be used against attacks made within 6 inches.",
+    warzone: "A unit with one or more models within a shield-node terrain objective controlled by its player has a 5+ invulnerable save against ranged attacks. This protection cannot be used against attacks made within 6 inches.",
     victorBonus: ANNIHILATOR_FINALE_BONUS,
     fit: "Adapted from Quantum Siege: switchable shield nodes give the eastern cannon a distinct defence puzzle before the emplacement can be captured."
   })

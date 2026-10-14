@@ -891,6 +891,58 @@ h1 em {
   transform: rotate(45deg);
 }
 
+.objective-terrain-block {
+  background: linear-gradient(135deg, rgba(88, 199, 232, 0.07), rgba(17, 23, 26, 0.2) 72%);
+}
+
+.objective-terrain-block h5 {
+  color: #d9eff5;
+}
+
+.terrain-objective-list {
+  display: grid;
+  gap: 8px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.terrain-objective-list li {
+  position: relative;
+  padding-left: 18px;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.terrain-objective-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 1px;
+  width: 6px;
+  height: 6px;
+  border: 1px solid #75bdd0;
+}
+
+.objective-terrain-block a {
+  display: inline-flex;
+  margin-top: 15px;
+  color: #9dd9e8;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.objective-terrain-block a:hover,
+.objective-terrain-block a:focus-visible {
+  color: white;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .bonus-block {
   background: rgba(216, 167, 66, 0.055);
 }
@@ -1543,7 +1595,8 @@ select:hover {
 
   .territory-card-body .territory-value-grid,
   .territory-card-body .bonus-block,
-  .territory-card-body .deployment-block {
+  .territory-card-body .deployment-block,
+  .territory-card-body .objective-terrain-block {
     grid-column: 1 / -1;
   }
 
@@ -1671,7 +1724,8 @@ select:hover {
 
   .territory-card-body .territory-value-grid,
   .territory-card-body .bonus-block,
-  .territory-card-body .deployment-block {
+  .territory-card-body .deployment-block,
+  .territory-card-body .objective-terrain-block {
     grid-column: auto;
   }
 

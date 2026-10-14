@@ -117,7 +117,7 @@ const TERRAIN = {
       "A unit can Vent Pressure to move the active hazard zone."
     ],
     warzoneTitle: "Seismic Cascade",
-    warzone: "At the end of each battle round, randomly select one unregulated objective. Units within range make a Hazard roll."
+    warzone: "At the end of each battle round, randomly select one unregulated terrain objective. Every unit with one or more models within its terrain area makes a Hazard roll."
   },
   ash: {
     label: "Ash wastes",
@@ -177,7 +177,7 @@ const TERRAIN = {
       "Remove a planted marker to Overload a Reactor for bonus VP."
     ],
     warzoneTitle: "Unstable Machinery",
-    warzone: "A unit completing an Action on an industrial objective may gain 2VP; if it does, make one Hazard roll for that unit."
+    warzone: "A unit completing an Action while controlling an industrial terrain objective may gain 2VP; if it does, make one Hazard roll for that unit."
   },
   marsh: {
     label: "Toxic wetlands",
@@ -252,7 +252,7 @@ const TERRAIN = {
       "The central objective only becomes active after two approaches are secured."
     ],
     warzoneTitle: "Cataclysmic Crossfire",
-    warzone: "At the end of each battle round, every unit within range of the central objective makes a Hazard roll."
+    warzone: "At the end of each battle round, every unit with one or more models within the central terrain objective makes a Hazard roll."
   }
 };
 

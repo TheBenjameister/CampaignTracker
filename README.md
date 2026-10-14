@@ -60,6 +60,18 @@ Deployment diagrams are reproduced from the linked sources with permission for u
 
 Sources: [Armageddon](https://wahapedia.ru/wh40k11ed/the-rules/armageddon/), [Dominatus](https://wahapedia.ru/wh40k11ed/the-rules/dominatus/), [Nachmund Gauntlet](https://wahapedia.ru/wh40k11ed/the-rules/nachmund-gauntlet/), [Pariah Nexus](https://wahapedia.ru/wh40k11ed/the-rules/pariah-nexus/), [The Breaking of the Perfect Fortress](https://assets.warhammer-community.com/horusheresy_exemplarybattles_thebreakingoftheperfectfortress_eng_24.09-5ds3vom7i0.pdf), and [Legacies of the Age of Darkness: Orbital Defences](https://assets.warhammer-community.com/dave-s-downloads-25-09/horusheresy_legaciesoftheageofdarkness_legionesastartes_eng_24.09.23.pdf).
 
+## Objective terrain convention
+
+The older source missions and their deployment diagrams were written around objective markers. Their adapted campaign rules use the 11th-edition objective-terrain system instead.
+
+- Each objective symbol on a deployment diagram identifies a location that should coincide with a suitable terrain area. The whole terrain area becomes the objective.
+- A model is within range of a terrain objective while it is within that terrain area. Distances to or from it are measured from the closest part of the terrain area.
+- If a marked location cannot coincide with a suitable terrain area, use a flat 40mm marker with the standard 3-inch horizontal and 5-inch vertical range.
+- When a rule deactivates, seals, collapses or sabotages a terrain objective, place the stated status token within it. The terrain feature remains in place but its terrain area stops being an objective.
+- Portable narrative items remain tokens rather than terrain. Temporal Raid deliberately uses movable 40mm Chronal Anchor markers, while Cache, Supply, Device, Asset and Charge tokens are carried or placed as described by their missions.
+
+This convention follows the [official 11th-edition Core Rules](https://assets.warhammer-community.com/eng_01-06_warhammer40k_new40k_core_rules-was6fbu1ix-hfewhmxyiy.pdf) and [objective-terrain overview](https://www.warhammer-community.com/en-gb/articles/lxzwueun/new40k-terrain-objectives-make-the-battlefield-your-mission/). It keeps the older narrative scenarios playable without treating a building or ruin as a movable marker.
+
 ## Central defence ring
 
 The six inner city territories and the Dominatus Engine are protected by three arcs of three wall territories. Crownfire Battery, Grief Battery and Wrath Battery sit between those arcs.
