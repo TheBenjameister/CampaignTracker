@@ -69,4 +69,6 @@ The six inner city territories and the Dominatus Engine are protected by three a
 
 ## Background map
 
-The restored campaign background is the original generated war-torn world artwork. To replace it with a hand-drawn map later, overwrite `assets/dominatus-war-map.png` with a `1536 × 1024` PNG. The responsive ten-row triangle and every territory remain separate SVG elements, so replacing the image will not disturb ownership, selection, or mission data.
+The campaign background is the Hexton Hills export stored at `assets/dominatus-war-map.png`. Its native `4058 × 2384` canvas, grid origin and tile spacing are matched by the calibrated background sizing and positioning in `styles.css`. The responsive ten-row SVG triangle remains separate from the artwork, but now sits directly over the corresponding 55 illustrated hexes at every zoom level and viewport size.
+
+If this map is exported again, keep the same Hexton Hills canvas dimensions and grid placement. If either changes, recalibrate the second `background-size` and `background-position` values in `.map-canvas::before` rather than moving the interactive hexes individually.

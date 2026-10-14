@@ -298,9 +298,8 @@ const HQ = {
   T55: "gamma"
 };
 
-// Terrain assignments follow the restored war-torn world artwork: volcanic
-// chasms to the west, a fortress ridge to the north, the central ruined city,
-// trench and crater belts to the south, and the flooded coast to the east.
+// Terrain assignments follow the illustrated Hexton Hills campaign map, with
+// the central defence ring and inner-city tiles treated as bespoke locations.
 const TERRAIN_BY_TILE = [
   "fortress",
   "canyon", "mountain",
